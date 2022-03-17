@@ -166,22 +166,26 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * @param root the DOM root element of the document
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
+		//系统内部的Bean等定义结构
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
 			for (int i = 0; i < nl.getLength(); i++) {
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
+					//默认的命名空间  Bean、
 					if (delegate.isDefaultNamespace(ele)) {
 						parseDefaultElement(ele, delegate);
 					}
 					else {
+						//自定义命名空间 <aop:>
 						delegate.parseCustomElement(ele);
 					}
 				}
 			}
 		}
 		else {
+			//自定义命名空间
 			delegate.parseCustomElement(root);
 		}
 	}

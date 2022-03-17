@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'org.springframework'
+version '5.1.21.BUILD-SNAPSHOT'
+sourceCompatibility=11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(":spring-context"))
+    implementation(project(":spring-tx"))
+    implementation group: 'org.aspectj',name: 'aspectjweaver',version: '1.8.6'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "utf-8"
+}
+tasks.withType(Javadoc) {
+    options.encoding = "utf-8"
+}
